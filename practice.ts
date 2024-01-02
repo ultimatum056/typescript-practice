@@ -1,0 +1,1 @@
+console.log("Hello Day 0 - Practice Typescript")
