@@ -1,19 +1,14 @@
-let sales: number = 123_456_789;
-let course = 'Typescript'
-let level;
+import express, { NextFunction, Request, Response } from 'express';
+import fs from 'fs';
 
-console.log(sales);
+const app = express();
 
-function render (document: any) {
-    console.log(document)
-}
+const PORT = 3000;
 
-// arrrays
-let numbers: number[] = [1,2,3];
-let numbersArr2: Array<number> = [4, 5, 2];
+app.get('/', (req: Request, res: Response, next: NextFunction) => {
+    res.send('hello world');
+})
 
-// tuples
-
-let user: readonly [number, string] = [1, 'Mosh'];
-// user.push('break type safety');
-console.log('// user', user)
+app.listen(PORT, () => 
+    console.log(`server is running on port ${PORT}`)
+);
