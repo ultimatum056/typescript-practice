@@ -1,10 +1,10 @@
 {
   "name": "typescript-practice",
   "version": "1.0.0",
-  "main": "index.ttsc --s",
+  "main": "src/index.ts",
   "scripts": {
     "start": "tsc && node ./dist/index.js",
-    "start:dev": "nodemon ./src/index.ts",
+    "start:dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,12 +23,16 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.7.4",
     "nodemon": "^3.1.7",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
   },
   "peerDependencies": {
     "typescript": "^5.6.2"
   },
   "dependencies": {
-    "express": "^4.21.0"
+    "@sequelize/core": "^7.0.0-alpha.43",
+    "@sequelize/mysql": "^7.0.0-alpha.43",
+    "express": "^4.21.0",
+    "mysql2": "^3.11.3"
   }
 }
