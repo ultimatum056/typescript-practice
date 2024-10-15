@@ -1,7 +1,7 @@
 {
     "ignore": ["node_modules", ".git"],
     "watch": ["src"],
-    "exec": "node -r ts-node/register  ./src/index.ts",
+    "exec": "node -r ts-node/register ./src/index.ts",
     "ext": "ts,js,json"
   }
   
