@@ -1,5 +1,4 @@
 import express, { NextFunction, Request, Response } from 'express';
-import fs from 'fs';
 import sequelize from './models';
 
 const app = express();
