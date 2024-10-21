@@ -1,5 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
 import sequelize from './models';
+import userRouter from "./routes/user"
 
 const app = express();
 
@@ -9,9 +10,10 @@ const PORT = 3000;
 (async () => {
     try {
         await sequelize.authenticate();
+        await sequelize.sync();
         console.log('sucessfully connected to database')
     } catch (err: any) {
-        console.log('error while connecting',err.message)
+        console.log('error while connecting', err.message)
     }
 })();
 
@@ -38,6 +40,9 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
     res.send('hello world');
 })
 
-app.listen(PORT, () => 
+
+app.use('/user', userRouter)
+
+app.listen(PORT, () =>
     console.log(`server is running on port ${PORT}`)
 );
