@@ -10,10 +10,11 @@ const sequelize = new Sequelize({
     user: 'root',
     password: '7878',
     port: 3306,
+    // not needed since mysql doesnt have concept of schema, postgres has
+    // schema: 'public'   
     // add all models here
     models: [ User]
 })
-
 
 export default sequelize
 

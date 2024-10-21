@@ -1,10 +1,8 @@
-import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from "@sequelize/core";
-import { attribute } from "@sequelize/core/_non-semver-use-at-your-own-risk_/expression-builders/attribute.js";
-import { Attribute, AutoIncrement, NotNull, PrimaryKey, Table } from "@sequelize/core/decorators-legacy";
+import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model, Sequelize } from "@sequelize/core";
+import { AfterCreate, Attribute, AutoIncrement, NotNull, PrimaryKey } from "@sequelize/core/decorators-legacy";
 
+export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
 
-
-export class User extends Model<InferAttributes<User>   , InferCreationAttributes<User>> {
     @Attribute(DataTypes.INTEGER)
     @PrimaryKey
     @AutoIncrement
@@ -15,6 +13,11 @@ export class User extends Model<InferAttributes<User>   , InferCreationAttribute
     declare firstName: string;
 
     @Attribute(DataTypes.STRING)
-    declare lastName: string | null; 
+    declare lastName: string | null;
+    
+    @AfterCreate()
+    static log() {
+        console.log('---new entry created')
+    }
 
 }
