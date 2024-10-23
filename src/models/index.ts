@@ -1,6 +1,7 @@
 import Sequelize from '@sequelize/core'
 import { MySqlDialect } from '@sequelize/mysql'
 import { User } from './user'
+import { Post } from './post'
 
 
 const sequelize = new Sequelize({
@@ -13,7 +14,7 @@ const sequelize = new Sequelize({
     // not needed since mysql doesnt have concept of schema, postgres has
     // schema: 'public'   
     // add all models here
-    models: [ User]
+    models: [ User, Post]
 })
 
 export default sequelize

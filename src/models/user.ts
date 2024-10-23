@@ -3,10 +3,11 @@ import { AfterCreate, Attribute, Default, NotNull, PrimaryKey, Table } from "@se
 import crypto from 'node:crypto'
 
 @Table({
+    paranoid: true,
     timestamps: true,
     defaultScope: {
         attributes: {
-            exclude: ['deletedAt']
+            exclude: ['createdAt', 'updatedAt','deletedAt']
         }
     },
     hooks: {

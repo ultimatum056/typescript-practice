@@ -1,8 +1,14 @@
 import express, { NextFunction, Request, Response } from 'express';
 import sequelize from './models';
 import userRouter from "./routes/user"
+import morgan from "morgan"
 
 const app = express();
+
+app.use(morgan('tiny'))
+app.use(express.json({
+    limit: '5mb'
+}))
 
 const PORT = 3000;
 
