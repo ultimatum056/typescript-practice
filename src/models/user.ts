@@ -21,7 +21,7 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
     @Attribute(DataTypes.STRING)
     @PrimaryKey
     @Default(() => crypto.randomUUID())
-    declare id: CreationOptional<number>;
+    declare id: CreationOptional<string>;
 
     @Attribute(DataTypes.STRING)
     @NotNull

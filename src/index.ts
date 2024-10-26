@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express, { NextFunction, Request, Response } from 'express';
 import sequelize from './models';
 import userRouter from "./routes/user"
@@ -52,3 +53,12 @@ app.use('/user', userRouter)
 app.listen(PORT, () =>
     console.log(`server is running on port ${PORT}`)
 );
+
+// global error handler
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
+    console.log( '--- global error ---',err.name, err.message)
+    res.status(500).send({
+        info: 'application global error',
+        message: err.message,
+    })
+})
