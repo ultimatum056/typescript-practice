@@ -18,7 +18,12 @@ export class Person extends Model<InferAttributes<Person>, InferCreationAttribut
     @Attribute(DataTypes.STRING)
     declare fullName: string
 
-    @HasOne(DrivingLicense, 'ownerId')
+    @HasOne(DrivingLicense, {
+        foreignKey: 'ownerId',
+        inverse: {
+            as: 'malik'
+        }
+    })
     declare drivingLicense: NonAttribute<DrivingLicense>
 
     declare createDrivingLicense: HasOneCreateAssociationMixin<DrivingLicense, 'ownerId'>;

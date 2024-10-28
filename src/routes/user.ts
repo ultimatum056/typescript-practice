@@ -88,5 +88,33 @@ router.post('/createPerson', async(req,res) => {
         res.status(500).send(err.message)
     }
 })
+
+
+router.get('/getPersonDl', async (req,res) => {
+    try {
+        
+     const pdl = await Person.findOne({
+        where: {
+            personId: 'fdfa902b-a004-4b02-aae0-a78012fefc1b'
+        },
+        include: [DrivingLicense]
+     })
+        
+
+    const dl1 = await DrivingLicense.findOne({
+        where: {
+            ownerId: 'fdfa902b-a004-4b02-aae0-a78012fefc1b'
+        },
+        include: ['malik']
+    })
+     res.status(200).send({
+        message: 'success',
+        data: pdl, 
+        data0: dl1,
+    })
+    } catch(err: any) {
+        res.status(500).send(err.message)
+    }
+})
 export default router
 
