@@ -1,6 +1,9 @@
 import { Router, Request, Response } from "express";
 import { User } from "../models/user";
 import { Post } from "../models/post";
+import { Person } from "../models/person";
+import { InferCreationAttributes } from "@sequelize/core";
+import { DrivingLicense } from "../models/drivingLicense";
 const router = Router();
 
 
@@ -55,6 +58,32 @@ router.post('/bulkCreatePosts', async (req: Request, res: Response) => {
             data: createdPosts
         })
 
+    } catch(err: any) {
+        res.status(500).send(err.message)
+    }
+})
+
+
+router.post('/createPerson', async(req,res) => {
+    try {
+
+        const p1: InferCreationAttributes<Person> = {
+            fullName: 'Ak' + Math.floor(Math.random() * 90) + 10,
+            personId : crypto.randomUUID()
+        }
+
+        const person = await Person.create(p1)
+
+        await person.createDrivingLicense({
+          drivingLicId: crypto.randomUUID(),
+        })
+        
+        // person.setDrivingLicense(dl)
+
+        res.status(200).send({
+            message: 'success',
+            data: person, 
+        })
     } catch(err: any) {
         res.status(500).send(err.message)
     }

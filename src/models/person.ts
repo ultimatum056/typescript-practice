@@ -1,4 +1,4 @@
-import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model, NonAttribute } from "@sequelize/core";
+import { CreationOptional, DataTypes, HasOneCreateAssociationMixin, HasOneSetAssociationMixin, InferAttributes, InferCreationAttributes, Model, NonAttribute } from "@sequelize/core";
 import { Attribute, Default, HasOne, PrimaryKey, Table } from "@sequelize/core/decorators-legacy";
 import crypto from "node:crypto";
 import { DrivingLicense } from "./drivingLicense";
@@ -20,5 +20,9 @@ export class Person extends Model<InferAttributes<Person>, InferCreationAttribut
 
     @HasOne(DrivingLicense, 'ownerId')
     declare drivingLicense: NonAttribute<DrivingLicense>
+
+    declare createDrivingLicense: HasOneCreateAssociationMixin<DrivingLicense, 'ownerId'>;
+    declare setDrivingLicense: HasOneSetAssociationMixin<DrivingLicense, DrivingLicense['drivingLicId']>
+
 
 }

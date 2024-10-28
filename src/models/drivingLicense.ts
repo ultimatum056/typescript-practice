@@ -13,7 +13,7 @@ export class DrivingLicense extends Model<InferAttributes<DrivingLicense>, Infer
     declare drivingLicId: CreationOptional<string> 
 
     @Attribute(DataTypes.DATE)
-    declare expiryDate: Date
+    declare expiryDate: CreationOptional<Date> 
 
     //Foreign key
     @Attribute(DataTypes.STRING)
